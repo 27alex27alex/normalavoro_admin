@@ -1,0 +1,84 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Dove vengono salvate le eventuali immagini caricate dal pannello
+media_folder: "immagini"
+public_folder: "/immagini"
+
+# Mostra un'anteprima leggibile invece della vista tecnica grezza
+publish_mode: simple
+
+locale: "it"
+
+collections:
+  - name: "articoli"
+    label: "Articoli NormaLavoro"
+    label_singular: "Elenco articoli"
+    files:
+      - name: "elenco"
+        label: "Tutti gli articoli"
+        file: "articoli/articoli.json"
+        fields:
+          - label: "Articoli"
+            name: "articles"
+            widget: "list"
+            label_singular: "Articolo"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "ID (numero unico, mai riutilizzato)"
+                name: "id"
+                widget: "number"
+                hint: "Guarda l'ultimo articolo in fondo alla lista e usa il numero successivo. Non riutilizzare mai un numero già assegnato."
+
+              - label: "Categoria"
+                name: "cat"
+                widget: "select"
+                options:
+                  - { label: "Decreti", value: "decreti" }
+                  - { label: "CCNL", value: "ccnl" }
+                  - { label: "AI Act & Tech", value: "aiact" }
+                  - { label: "Il Caso", value: "caso" }
+                  - { label: "Giurisprudenza", value: "giurisprudenza" }
+                  - { label: "Scadenze", value: "scadenze" }
+
+              - label: "Etichetta mostrata sul badge colorato"
+                name: "tag"
+                widget: "string"
+                hint: "Di solito coincide con il nome della categoria, es. 'CCNL', 'Il Caso', 'Giurisprudenza'."
+
+              - label: "Articolo in evidenza (appare in cima alla homepage)"
+                name: "hero"
+                widget: "boolean"
+                required: false
+                default: false
+                hint: "Attivalo per UN SOLO articolo alla volta: sarà quello mostrato come titolo principale in home."
+
+              - label: "Titolo"
+                name: "title"
+                widget: "string"
+
+              - label: "Riassunto breve (2-3 righe, appare nella card)"
+                name: "excerpt"
+                widget: "text"
+
+              - label: "Testo completo dell'articolo"
+                name: "body"
+                widget: "text"
+                hint: >
+                  Scrivi ogni paragrafo racchiuso tra <p> e </p>. Per un sottotitolo in
+                  grassetto dentro un paragrafo usa <b>...</b>. Esempio:
+                  <p>Primo paragrafo.</p><p><b>Un punto chiave.</b> Continua qui.</p>
+                  ATTENZIONE: se scrivi una parola con l'apostrofo (es. "l'azienda"),
+                  va bene scriverla normalmente qui — il pannello gestisce l'escaping
+                  automaticamente, non serve la barra rovesciata.
+
+              - label: "Firma"
+                name: "fonte"
+                widget: "string"
+                default: "Redazione NormaLavoro"
+
+              - label: "Riferimento normativo (legge, articolo, numero sentenza)"
+                name: "norma"
+                widget: "string"
+                hint: "Es. 'D.L. 30 aprile 2026, n. 62 — G.U. n. 99/2026' oppure 'Cass. civ., Sez. Lavoro, sent. 2 luglio 2026, n. 22622'."

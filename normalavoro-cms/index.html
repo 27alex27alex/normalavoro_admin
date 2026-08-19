@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NormaLavoro — Notizie su diritto del lavoro e contrattazione collettiva</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --navy:#182338;
+    --navy-light:#26365a;
+    --paper:#f7f5ef;
+    --paper-warm:#f0ece1;
+    --ink:#14161c;
+    --gold:#c9932e;
+    --gold-light:#e0b45f;
+    --red:#a13a2e;
+    --green:#3f6b4a;
+    --line:rgba(20,22,28,0.12);
+    --line-dark:rgba(247,245,239,0.15);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ============ HEADER ============ */
+  header{
+    background:var(--navy);
+    color:var(--paper);
+    padding:18px 20px 0;
+    position:sticky; top:0; z-index:50;
+  }
+  .header-top{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-bottom:16px;
+  }
+  .logo{
+    font-family:'Fraunces'; font-weight:900; font-size:26px;
+    letter-spacing:-0.02em;
+  }
+  .logo .norma{ color:var(--paper); }
+  .logo .lavoro{ color:var(--gold-light); font-style:italic; }
+  .date-badge{
+    font-size:11px; color:#9aa4bd; letter-spacing:0.04em;
+    text-align:right;
+  }
+  .search-bar{
+    display:flex; align-items:center; gap:10px;
+    background:rgba(247,245,239,0.08);
+    border:1px solid rgba(247,245,239,0.18);
+    border-radius:10px;
+    padding:11px 14px;
+    margin-bottom:16px;
+  }
+  .search-bar input{
+    background:none; border:none; outline:none;
+    color:var(--paper); font-family:'Inter'; font-size:15px;
+    width:100%;
+  }
+  .search-bar input::placeholder{ color:#8892ac; }
+  .search-icon{ color:#8892ac; font-size:15px; flex-shrink:0; }
+
+  .cat-scroll{
+    display:flex; gap:8px; overflow-x:auto;
+    padding-bottom:16px;
+    scrollbar-width:none;
+  }
+  .cat-scroll::-webkit-scrollbar{ display:none; }
+  .cat-chip{
+    flex-shrink:0;
+    font-family:'Inter'; font-weight:600; font-size:13px;
+    padding:9px 16px; border-radius:100px;
+    background:rgba(247,245,239,0.08);
+    color:#c7cede;
+    border:1px solid rgba(247,245,239,0.15);
+    cursor:pointer;
+    transition:all 0.15s ease;
+    white-space:nowrap;
+  }
+  .cat-chip.active{
+    background:var(--gold-light);
+    color:var(--navy);
+    border-color:var(--gold-light);
+  }
+
+  /* ============ MAIN LAYOUT — schematico a sezioni, non più a colonna unica centrata ============ */
+  main{ max-width:1160px; margin:0 auto; padding:24px 20px 60px; }
+
+  .layout-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:36px;
+  }
+  @media (min-width:900px){
+    .layout-grid{ grid-template-columns: 1fr 320px; align-items:start; }
+    .sidebar{ position:sticky; top:24px; display:flex; flex-direction:column; gap:28px; }
+  }
+
+  .section-nav{
+    display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; margin-bottom:6px;
+    scrollbar-width:none;
+  }
+  .section-nav::-webkit-scrollbar{ display:none; }
+  .section-nav a{
+    flex-shrink:0; font-weight:600; font-size:13px;
+    padding:9px 16px; border-radius:100px;
+    background:#fff; color:var(--navy);
+    border:1px solid var(--line);
+    white-space:nowrap;
+  }
+
+  .section-block{ margin-bottom:44px; scroll-margin-top:16px; }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:16px;
+  }
+  .section-head h2{
+    font-family:'Fraunces'; font-weight:700; font-size:21px; color:var(--navy);
+  }
+  .section-head .count{
+    font-size:12.5px; color:#9298a3; font-weight:600;
+  }
+  .article-grid{
+    display:grid; grid-template-columns:1fr; gap:16px;
+  }
+  @media (min-width:640px){
+    .article-grid.grid-2{ grid-template-columns:1fr 1fr; }
+  }
+
+  .section-label{
+    font-family:'Inter'; font-weight:700; font-size:12px;
+    letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--navy); opacity:0.55;
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .section-label::after{
+    content:''; flex:1; height:1px; background:var(--line);
+  }
+
+  /* ============ HERO ARTICLE ============ */
+  .hero{
+    background:var(--navy);
+    color:var(--paper);
+    border-radius:16px;
+    padding:32px 32px 34px;
+    margin-bottom:36px;
+    position:relative;
+    overflow:hidden;
+  }
+  @media (min-width:640px){
+    .hero{ padding:44px 48px 40px; }
+    .hero h1{ font-size:38px !important; max-width:75%; }
+    .hero p{ max-width:70%; }
+  }
+  .hero-tag{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    font-size:11px; font-weight:700; letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:5px 12px; border-radius:5px;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-family:'Fraunces'; font-weight:700; font-size:30px; line-height:1.22;
+    margin-bottom:14px;
+    cursor:pointer;
+  }
+  .hero p{
+    font-size:15.5px; color:#c7cede; line-height:1.55;
+    margin-bottom:18px;
+  }
+  .hero-meta{
+    display:flex; justify-content:flex-end; align-items:center;
+    font-size:12.5px; color:#8892ac;
+    border-top:1px solid var(--line-dark);
+    padding-top:14px;
+  }
+
+  /* ============ SCADENZARIO WIDGET ============ */
+  .scadenzario{
+    background:var(--paper-warm);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px 22px 8px;
+    margin-bottom:36px;
+  }
+  .scad-item{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .scad-item:last-child{ border-bottom:none; }
+  .scad-date{
+    font-family:'Fraunces'; font-weight:700; font-size:15px;
+    background:var(--navy); color:var(--gold-light);
+    border-radius:8px;
+    padding:8px 10px;
+    text-align:center;
+    min-width:56px;
+    line-height:1.1;
+  }
+  .scad-date .day{ display:block; font-size:19px; }
+  .scad-date .mon{ display:block; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; opacity:0.85;}
+  .scad-text{ font-size:14px; line-height:1.4; }
+  .scad-text b{ font-weight:700; }
+
+  /* ============ ARTICLE GRID ============ */
+  .articles{ display:flex; flex-direction:column; gap:18px; margin-bottom:12px; }
+  .card{
+    display:block;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    cursor:pointer;
+    transition:border-color 0.15s ease;
+  }
+  .card:active{ border-color:var(--gold); }
+  .card-tag{
+    display:inline-block;
+    font-size:11px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
+    padding:4px 10px; border-radius:5px;
+    margin-bottom:12px;
+  }
+  .tag-decreti{ background:#e7ecf5; color:var(--navy); }
+  .tag-ccnl{ background:#eaf1ea; color:var(--green); }
+  .tag-aiact{ background:#f5ecdc; color:#8a5f18; }
+  .tag-scadenze{ background:#f6e7e5; color:var(--red); }
+  .tag-caso{ background:#e9e4f2; color:#5b3f8c; }
+  .tag-giurisprudenza{ background:#dcecec; color:#1f6b6b; }
+
+  /* ============ IL CASO — layout Problema/Normativa/Soluzione ============ */
+  .caso-block{
+    margin:14px 0;
+    padding:16px 18px;
+    border-radius:10px;
+    background:var(--paper-warm);
+    border-left:4px solid #5b3f8c;
+  }
+  .caso-block h4{
+    font-family:'Inter'; font-size:12px; font-weight:800;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:#5b3f8c; margin-bottom:8px;
+  }
+  .caso-block p{ margin-bottom:0; }
+
+  /* ============ ESPERTO RISPONDE ============ */
+  .esperto-section{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 22px;
+    margin-bottom:36px;
+  }
+  .qa-item{
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .qa-item:first-child{ padding-top:0; }
+  .qa-item:last-child{ border-bottom:none; padding-bottom:0; }
+  .qa-question{
+    display:flex; gap:10px; align-items:flex-start;
+    font-weight:700; font-size:15px; color:var(--ink);
+    margin-bottom:10px;
+  }
+  .qa-question .bubble{
+    flex-shrink:0; width:26px; height:26px; border-radius:100px;
+    background:var(--navy); color:var(--gold-light);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:800;
+  }
+  .qa-answer{
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:14.5px; color:#4a4f5b; line-height:1.6;
+  }
+  .qa-answer .bubble{
+    flex-shrink:0; width:26px; height:26px; border-radius:100px;
+    background:var(--gold-light); color:var(--navy);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:800;
+  }
+
+  .ask-form{
+    margin-top:20px; padding-top:20px;
+    border-top:1px dashed var(--line);
+  }
+  .ask-form label{
+    display:block; font-size:12.5px; font-weight:700;
+    color:var(--navy); margin-bottom:6px;
+  }
+  .ask-form input, .ask-form textarea{
+    width:100%; padding:12px 14px; border-radius:9px;
+    border:1px solid var(--line); font-family:'Inter'; font-size:14.5px;
+    margin-bottom:14px; outline:none; background:var(--paper-warm);
+    resize:vertical;
+  }
+  .ask-form input:focus, .ask-form textarea:focus{ border-color:var(--gold); }
+  .ask-form button{
+    width:100%; background:var(--navy); color:var(--gold-light);
+    border:none; border-radius:9px; padding:14px;
+    font-family:'Inter'; font-weight:700; font-size:14.5px;
+    cursor:pointer;
+  }
+  .ask-note{
+    font-size:12px; color:#9298a3; margin-top:10px; line-height:1.5;
+  }
+
+  .card h2{
+    font-family:'Fraunces'; font-weight:700; font-size:20px; line-height:1.3;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .card p{ font-size:14.5px; color:#5a5f6b; line-height:1.55; margin-bottom:14px; }
+  .card-meta{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:12px; color:#9298a3;
+    padding-top:12px; border-top:1px solid var(--line);
+  }
+  .card-meta .fonte{ font-weight:600; color:#6b7280; }
+
+  .empty-state{
+    text-align:center; padding:60px 20px; color:#9298a3;
+    font-size:14.5px;
+  }
+
+  /* ============ NEWSLETTER ============ */
+  .newsletter{
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color:var(--paper);
+    border-radius:16px;
+    padding:30px 26px;
+    margin-top:36px;
+    text-align:center;
+  }
+  .newsletter h3{
+    font-family:'Fraunces'; font-size:23px; font-weight:700; margin-bottom:10px;
+  }
+  .newsletter p{ font-size:14px; color:#c7cede; margin-bottom:20px; }
+  .newsletter-form{ display:flex; gap:8px; }
+  .newsletter-form input{
+    flex:1; padding:13px 14px; border-radius:9px; border:none;
+    font-family:'Inter'; font-size:14px; outline:none;
+  }
+  .newsletter-form button{
+    background:var(--gold-light); color:var(--navy);
+    border:none; border-radius:9px; padding:13px 20px;
+    font-family:'Inter'; font-weight:700; font-size:14px;
+    cursor:pointer;
+  }
+
+  /* ============ PAGINA ARTICOLO — pagina vera, non popup ============ */
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-weight:700; font-size:14px; color:var(--navy);
+    margin-bottom:24px;
+  }
+  #articlePageContent .card-tag{ margin-bottom:16px; }
+  #articlePageContent h1{
+    font-family:'Fraunces'; font-weight:700; font-size:32px; line-height:1.25;
+    margin-bottom:20px; color:var(--ink);
+  }
+  #articlePageContent .article-body{
+    font-size:16px; line-height:1.75; color:#333844;
+  }
+  #articlePageContent .article-body p{ margin-bottom:16px; }
+  #articlePageContent .article-source{
+    margin-top:28px; padding-top:20px; border-top:1px solid var(--line);
+    font-size:13px; color:#9298a3;
+  }
+
+  footer{
+    text-align:center; padding:30px 20px 50px;
+    font-size:12px; color:#9298a3;
+  }
+
+  @media (min-width:520px){
+    .hero h1{ font-size:34px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="logo"><span class="norma">Norma</span><span class="lavoro">Lavoro</span></div>
+    <div class="date-badge" id="todayDate"></div>
+  </div>
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Cerca decreti, CCNL, normative...">
+  </div>
+  <div class="section-nav">
+    <a href="index.html">Home</a>
+    <a href="?sezione=decreti">Decreti</a>
+    <a href="?sezione=ccnl">CCNL</a>
+    <a href="?sezione=aiact">AI Act &amp; Tech</a>
+    <a href="?sezione=caso">Il Caso</a>
+    <a href="?sezione=giurisprudenza">Giurisprudenza</a>
+    <a href="?sezione=scadenze">Scadenze</a>
+    <a href="?sezione=esperto">L'esperto risponde</a>
+  </div>
+</header>
+
+<main>
+
+<div id="homeContent">
+
+  <div class="hero" id="heroArticle"></div>
+
+  <div class="layout-grid">
+
+    <div class="main-col">
+      <section class="section-block" id="sez-decreti">
+        <div class="section-head"><h2>Decreti</h2><span class="count" id="count-decreti"></span></div>
+        <div class="article-grid grid-2" id="grid-decreti"></div>
+      </section>
+
+      <section class="section-block" id="sez-ccnl">
+        <div class="section-head"><h2>CCNL</h2><span class="count" id="count-ccnl"></span></div>
+        <div class="article-grid grid-2" id="grid-ccnl"></div>
+      </section>
+
+      <section class="section-block" id="sez-aiact">
+        <div class="section-head"><h2>AI Act &amp; Tech</h2><span class="count" id="count-aiact"></span></div>
+        <div class="article-grid grid-2" id="grid-aiact"></div>
+      </section>
+
+      <section class="section-block" id="sez-caso">
+        <div class="section-head"><h2>Il Caso</h2><span class="count" id="count-caso"></span></div>
+        <div class="article-grid grid-2" id="grid-caso"></div>
+      </section>
+
+      <section class="section-block" id="sez-giurisprudenza">
+        <div class="section-head"><h2>Giurisprudenza</h2><span class="count" id="count-giurisprudenza"></span></div>
+        <div class="article-grid grid-2" id="grid-giurisprudenza"></div>
+      </section>
+    </div>
+
+    <div class="sidebar">
+      <div>
+        <div class="section-label">Prossime scadenze</div>
+        <div class="scadenzario" id="scadenzario"></div>
+      </div>
+
+      <div class="esperto-section" id="sez-esperto">
+        <div class="section-label" style="margin-bottom:16px;">L'esperto risponde</div>
+        <div class="qa-item">
+          <div class="qa-question"><span class="bubble">D</span><span>Posso installare telecamere in azienda senza avvisare i dipendenti?</span></div>
+          <div class="qa-answer"><span class="bubble">R</span><span>No. L'informativa ai lavoratori è un adempimento autonomo, distinto dall'accordo sindacale o dall'autorizzazione INL. Vedi il caso completo qui a fianco.</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-question"><span class="bubble">D</span><span>Il consenso dei dipendenti basta per installare la videosorveglianza?</span></div>
+          <div class="qa-answer"><span class="bubble">R</span><span>No. La Cassazione ha chiarito che il consenso individuale non sana la mancata procedura ex art. 4.</span></div>
+        </div>
+        <div id="userQuestionsList"></div>
+        <div class="ask-form">
+          <label for="askName">Il tuo nome (facoltativo)</label>
+          <input type="text" id="askName" placeholder="Come vuoi firmarti">
+          <label for="askQuestion">La tua domanda</label>
+          <textarea id="askQuestion" rows="3" placeholder="Scrivi qui il tuo quesito..."></textarea>
+          <button onclick="submitQuestion()">Invia la domanda</button>
+          <div class="ask-note" id="askFeedback" style="display:none;"></div>
+        </div>
+      </div>
+
+      <div style="background:var(--paper-warm); border:1px solid var(--line); border-radius:16px; padding:22px;">
+        <div class="section-label" style="margin-bottom:14px;">Scadenze &amp; adempimenti</div>
+        <div class="article-grid" id="grid-scadenze"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="newsletter">
+    <h3>Non perdere gli aggiornamenti</h3>
+    <p>Decreti, rinnovi CCNL e normative HR ogni settimana nella tua casella.</p>
+    <div class="newsletter-form">
+      <input type="email" id="newsletterEmail" placeholder="La tua email">
+      <button onclick="submitNewsletter()">Iscriviti</button>
+    </div>
+    <div class="ask-note" id="newsletterFeedback" style="display:none; margin-top:10px;"></div>
+  </div>
+
+</div><!-- /homeContent -->
+
+<article id="articlePage" style="display:none; max-width:760px; margin:0 auto;">
+  <a href="index.html" class="back-link">← Torna a NormaLavoro</a>
+  <div id="articlePageContent"></div>
+</article>
+
+<div id="sectionPage" style="display:none;">
+  <a href="index.html" class="back-link">← Torna a NormaLavoro</a>
+  <div id="sectionPageContent"></div>
+</div>
+
+</main>
+
+<footer>
+  NormaLavoro — Notizie su diritto del lavoro e contrattazione collettiva<br>
+  Prototipo dimostrativo · Contenuti verificati su fonti primarie<br><br>
+  <a href="privacy.html" style="color:#9298a3;">Privacy</a> · <a href="cookie-policy.html" style="color:#9298a3;">Cookie Policy</a> · <a href="note-legali.html" style="color:#9298a3;">Note Legali</a>
+</footer>
+
+<script>
+// ============================================================
+// DATI — Notizie reali, verificate su fonti primarie/giornalistiche
+// (In produzione: sostituire con chiamate a un CMS/backend)
+//
+// ⚠️ REGOLA EDITORIALE OBBLIGATORIA — LEGGERE PRIMA DI AGGIUNGERE ARTICOLI
+// ============================================================
+// Ogni articolo deve essere SCRITTO DA ZERO, con parole proprie.
+// NON copiare e incollare frasi da altri siti, giornali o blog, nemmeno
+// in parte: è violazione di copyright ed espone il sito a contestazioni.
+//
+// Come procedere correttamente per un nuovo articolo:
+// 1. Leggi la fonte normativa PRIMARIA (Gazzetta Ufficiale, testo della
+//    legge/sentenza, sito istituzionale) — non un articolo di terzi che
+//    la commenta.
+//  2. Chiudi la fonte, e riassumi a mente ciò che hai capito.
+//  3. Scrivi il tuo articolo spiegando il concetto con parole tue, come
+//     lo spiegheresti a un collega — non riformulare frase per frase
+//     un articolo altrui (anche questo è plagio, solo mascherato).
+//  4. Nel campo "norma", cita SOLO il riferimento normativo ufficiale
+//     (legge, articolo, numero sentenza) — mai il nome del sito da cui
+//     hai eventualmente preso spunto per capire l'argomento.
+//  5. Se vuoi riportare una frase esatta di una sentenza o di una norma,
+//     mettila tra virgolette e cita la fonte con precisione (questo è
+//     lecito, il copia-incolla di interi paragrafi editoriali no).
+// ============================================================
+let ARTICLES = []; // popolato dinamicamente da articoli/articoli.json
+
+const DEADLINES = [
+  { day: '30', mon: 'GIU', text: 'Scelta destinazione <b>TFR 2026</b> alla previdenza complementare' },
+  { day: '23', mon: 'LUG', text: 'Consultazione lavoratori per il rinnovo <b>CCNL PMI Confapi</b>' },
+  { day: '2', mon: 'DIC', text: '<b>AI Act</b> — scadenza obblighi sistemi HR ad alto rischio (2027)' },
+];
+
+// ============================================================
+// RENDER
+// ============================================================
+const tagClass = { decreti:'tag-decreti', ccnl:'tag-ccnl', aiact:'tag-aiact', scadenze:'tag-scadenze', caso:'tag-caso', giurisprudenza:'tag-giurisprudenza' };
+
+function renderHero(){
+  const a = ARTICLES.find(x => x.hero) || ARTICLES[0];
+  if(!a){ document.getElementById('heroArticle').style.display = 'none'; return; }
+  document.getElementById('heroArticle').innerHTML = `
+    <div class="hero-tag">In evidenza</div>
+    <a href="?art=${a.id}" style="color:inherit;"><h1>${a.title}</h1></a>
+    <p>${a.excerpt}</p>
+    <div class="hero-meta">
+      <a href="?art=${a.id}" style="color:#e0b45f; font-weight:600;">Leggi tutto →</a>
+    </div>
+  `;
+}
+
+function renderDeadlines(){
+  document.getElementById('scadenzario').innerHTML = DEADLINES.map(d => `
+    <div class="scad-item">
+      <div class="scad-date"><span class="day">${d.day}</span><span class="mon">${d.mon}</span></div>
+      <div class="scad-text">${d.text}</div>
+    </div>
+  `).join('');
+}
+
+function cardHTML(a){
+  return `
+    <a class="card" href="?art=${a.id}">
+      <div class="card-tag ${tagClass[a.cat]}">${a.tag}</div>
+      <h2>${a.title}</h2>
+      <p>${a.excerpt}</p>
+      <div class="card-meta">
+        <span class="fonte">${a.fonte}</span>
+      </div>
+    </a>
+  `;
+}
+
+function renderSections(searchTerm){
+  searchTerm = searchTerm || '';
+  const cats = ['decreti', 'ccnl', 'aiact', 'caso', 'giurisprudenza', 'scadenze'];
+  cats.forEach(cat => {
+    const list = ARTICLES.filter(a => a.cat === cat).filter(a => {
+      if(searchTerm === '') return true;
+      return a.title.toLowerCase().includes(searchTerm) || a.excerpt.toLowerCase().includes(searchTerm);
+    });
+    const grid = document.getElementById('grid-' + cat);
+    const countEl = document.getElementById('count-' + cat);
+    const sectionEl = document.getElementById('sez-' + cat);
+    if(!grid) return;
+    if(list.length === 0){
+      grid.innerHTML = searchTerm ? '<div class="empty-state">Nessun risultato in questa sezione.</div>' : '';
+      if(sectionEl) sectionEl.style.display = (searchTerm && list.length===0) ? 'none' : (list.length===0 ? 'none' : 'block');
+    } else {
+      grid.innerHTML = list.map(cardHTML).join('');
+      if(sectionEl) sectionEl.style.display = 'block';
+    }
+    if(countEl) countEl.textContent = list.length > 0 ? (list.length + (list.length===1 ? ' notizia' : ' notizie')) : '';
+  });
+}
+
+function showArticlePage(id){
+  const a = ARTICLES.find(x => x.id === id);
+  if(!a){ showHomePage(); return; }
+  document.getElementById('articlePageContent').innerHTML = `
+    <div class="card-tag ${tagClass[a.cat]}">${a.tag}</div>
+    <h1>${a.title}</h1>
+    <div class="article-body">${a.body}</div>
+    <div class="article-source">A cura di ${a.fonte}<br>Riferimento normativo: ${a.norma}</div>
+  `;
+  document.getElementById('homeContent').style.display = 'none';
+  document.getElementById('articlePage').style.display = 'block';
+  document.title = a.title + ' — NormaLavoro';
+  window.scrollTo(0, 0);
+}
+
+function showSectionPage(sezione){
+  const catNames = { decreti:'Decreti', ccnl:'CCNL', aiact:'AI Act & Tech', caso:'Il Caso', giurisprudenza:'Giurisprudenza', scadenze:'Scadenze' };
+
+  if(sezione === 'esperto'){
+    document.getElementById('sectionPageContent').innerHTML = `
+      <h1 style="font-family:'Fraunces'; font-weight:700; font-size:30px; margin-bottom:24px;">L'esperto risponde</h1>
+      <div class="esperto-section" style="max-width:640px;">
+        <div class="qa-item">
+          <div class="qa-question"><span class="bubble">D</span><span>Posso installare telecamere in azienda senza avvisare i dipendenti?</span></div>
+          <div class="qa-answer"><span class="bubble">R</span><span>No. L'informativa ai lavoratori è un adempimento autonomo, distinto dall'accordo sindacale o dall'autorizzazione INL: va sempre fornita, con cartelli visibili nelle aree riprese. Trovi l'analisi completa nella sezione "Il Caso".</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-question"><span class="bubble">D</span><span>Il consenso dei dipendenti basta per installare la videosorveglianza?</span></div>
+          <div class="qa-answer"><span class="bubble">R</span><span>No. La Cassazione ha chiarito più volte che il consenso individuale non sana la mancata procedura ex art. 4: serve comunque l'accordo sindacale o l'autorizzazione dell'Ispettorato del Lavoro.</span></div>
+        </div>
+        <div id="userQuestionsListPage"></div>
+        <div class="ask-form">
+          <label for="askNamePage">Il tuo nome (facoltativo)</label>
+          <input type="text" id="askNamePage" placeholder="Come vuoi firmarti">
+          <label for="askQuestionPage">La tua domanda</label>
+          <textarea id="askQuestionPage" rows="4" placeholder="Scrivi qui il tuo quesito su diritto del lavoro, CCNL, gestione HR..."></textarea>
+          <button onclick="submitQuestion('Page')">Invia la domanda</button>
+          <div class="ask-note" id="askFeedbackPage" style="display:none;"></div>
+        </div>
+      </div>
+    `;
+    renderUserQuestions();
+  } else {
+    const list = ARTICLES.filter(a => a.cat === sezione);
+    document.getElementById('sectionPageContent').innerHTML = `
+      <h1 style="font-family:'Fraunces'; font-weight:700; font-size:30px; margin-bottom:8px;">${catNames[sezione] || sezione}</h1>
+      <div style="color:#9298a3; font-size:13.5px; margin-bottom:24px;">${list.length} ${list.length===1?'notizia':'notizie'}</div>
+      <div class="article-grid grid-2">${list.map(cardHTML).join('') || '<div class="empty-state">Nessuna notizia in questa sezione.</div>'}</div>
+    `;
+  }
+
+  document.getElementById('homeContent').style.display = 'none';
+  document.getElementById('articlePage').style.display = 'none';
+  document.getElementById('sectionPage').style.display = 'block';
+  document.title = (catNames[sezione] || "L'esperto risponde") + ' — NormaLavoro';
+  window.scrollTo(0, 0);
+}
+
+function showHomePage(){
+  document.getElementById('homeContent').style.display = 'block';
+  document.getElementById('articlePage').style.display = 'none';
+  document.getElementById('sectionPage').style.display = 'none';
+  document.title = 'NormaLavoro — Notizie su diritto del lavoro e contrattazione collettiva';
+}
+
+function routeFromURL(){
+  const params = new URLSearchParams(window.location.search);
+  const artId = params.get('art');
+  const sezione = params.get('sezione');
+  if(artId){
+    showArticlePage(parseInt(artId, 10));
+  } else if(sezione){
+    showSectionPage(sezione);
+  } else {
+    showHomePage();
+  }
+}
+
+// ============================================================
+// L'ESPERTO RISPONDE — domande salvate localmente nel browser
+// (funziona subito, senza connettori esterni; per renderle visibili
+// a tutti i visitatori del sito andrebbero salvate su un database:
+// quello richiede un backend, che questo file da solo non ha)
+// ============================================================
+const QUESTIONS_KEY = 'normalavoro_domande';
+
+function loadQuestions(){
+  try{
+    const raw = localStorage.getItem(QUESTIONS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e){ return []; }
+}
+
+function saveQuestions(list){
+  localStorage.setItem(QUESTIONS_KEY, JSON.stringify(list));
+}
+
+function renderUserQuestions(){
+  const list = loadQuestions();
+  const html = list.length === 0 ? '' : list.map(q => `
+    <div class="qa-item">
+      <div class="qa-question"><span class="bubble">D</span><span>${q.text}${q.name ? ' — <span style="font-weight:400;color:#9298a3;">' + q.name + '</span>' : ''}</span></div>
+      <div class="qa-answer"><span class="bubble">⏳</span><span style="font-style:italic; color:#9298a3;">In attesa di risposta della redazione</span></div>
+    </div>
+  `).join('');
+  const c1 = document.getElementById('userQuestionsList');
+  const c2 = document.getElementById('userQuestionsListPage');
+  if(c1) c1.innerHTML = html;
+  if(c2) c2.innerHTML = html;
+}
+
+function submitQuestion(suffix){
+  suffix = suffix || '';
+  const qText = document.getElementById('askQuestion' + suffix).value.trim();
+  const qName = document.getElementById('askName' + suffix).value.trim();
+  if(qText === ''){
+    showAskFeedback('Scrivi prima la tua domanda nel campo di testo.', true, suffix);
+    return;
+  }
+  const list = loadQuestions();
+  list.unshift({ text: qText, name: qName, ts: Date.now() });
+  saveQuestions(list);
+  renderUserQuestions();
+  document.getElementById('askQuestion' + suffix).value = '';
+  document.getElementById('askName' + suffix).value = '';
+  showAskFeedback('Domanda inviata. Comparirà qui sopra "in attesa di risposta" — la redazione la risponderà appena possibile.', false, suffix);
+}
+
+function showAskFeedback(msg, isError, suffix){
+  const el = document.getElementById('askFeedback' + (suffix || ''));
+  if(!el) return;
+  el.textContent = msg;
+  el.style.color = isError ? '#a13a2e' : '#3f6b4a';
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+// ============================================================
+// NEWSLETTER — iscrizioni salvate localmente nel browser
+// ============================================================
+const SUBS_KEY = 'normalavoro_iscrizioni';
+
+function submitNewsletter(){
+  const input = document.getElementById('newsletterEmail');
+  const email = input.value.trim();
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!re.test(email)){
+    showNewsletterFeedback('Inserisci un indirizzo email valido.', true);
+    return;
+  }
+  try{
+    const raw = localStorage.getItem(SUBS_KEY);
+    const list = raw ? JSON.parse(raw) : [];
+    if(!list.includes(email)) list.push(email);
+    localStorage.setItem(SUBS_KEY, JSON.stringify(list));
+  } catch(e){}
+  input.value = '';
+  showNewsletterFeedback('Iscrizione registrata. Riceverai gli aggiornamenti a questo indirizzo.', false);
+}
+
+function showNewsletterFeedback(msg, isError){
+  const el = document.getElementById('newsletterFeedback');
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.style.color = isError ? '#f0a8a0' : '#e0b45f';
+  setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+// ============================================================
+// RICERCA — filtra le sezioni in tempo reale
+// ============================================================
+let currentSearch = '';
+
+document.getElementById('searchInput').addEventListener('input', function(e){
+  currentSearch = e.target.value.toLowerCase().trim();
+  renderSections(currentSearch);
+});
+
+// ============================================================
+// INIT — carica gli articoli da articoli/articoli.json, poi renderizza
+// (questo file viene aggiornato dal pannello di amministrazione /admin)
+// ============================================================
+const today = new Date();
+document.getElementById('todayDate').textContent = today.toLocaleDateString('it-IT', {weekday:'long', day:'numeric', month:'long'});
+
+async function initSite(){
+  try{
+    const res = await fetch('articoli/articoli.json', {cache:'no-store'});
+    const data = await res.json();
+    ARTICLES = data.articles || [];
+  } catch(e){
+    console.error('Errore nel caricamento degli articoli:', e);
+    ARTICLES = [];
+  }
+  renderHero();
+  renderDeadlines();
+  renderSections();
+  renderUserQuestions();
+  routeFromURL();
+}
+
+initSite();
+</script>
+<script src="cookie-banner.js"></script>
+</body>
+</html>
