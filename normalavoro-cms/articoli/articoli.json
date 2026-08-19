@@ -1,82 +1,82 @@
 {
   "articles": [
     {
-      "id": 1,
-      "cat": "decreti",
-      "tag": "Decreti",
-      "hero": true,
-      "title": "Decreto Primo Maggio 2026: salario giusto, incentivi under 35 e stretta sul caporalato digitale",
       "excerpt": "Il D.L. 62/2026, in vigore dal 1° maggio, introduce esoneri contributivi per giovani e donne svantaggiate, nuove regole di trasparenza per gli annunci di lavoro e una presunzione di subordinazione per i rider organizzati dalle piattaforme.",
       "body": "\n      <p>Il Decreto-Legge 30 aprile 2026, n. 62 — pubblicato in Gazzetta Ufficiale n. 99/2026 ed entrato in vigore il 1° maggio — interviene su tre fronti: salario giusto, incentivi all'occupazione e contrasto alle nuove forme di sfruttamento nell'economia digitale.</p>\n      <p><b>Incentivi per le assunzioni.</b> Per le lavoratrici svantaggiate assunte a tempo indeterminato entro il 31 dicembre 2026 è previsto un esonero contributivo totale, fino a 650 euro mensili (800 euro nelle regioni della ZES unica per il Mezzogiorno), per un massimo di 24 mesi. Per gli under 35 senza impiego stabile l'esonero pieno arriva fino a 500 euro mensili, elevato a 650 euro nelle regioni del Mezzogiorno.</p>\n      <p><b>Trasparenza retributiva.</b> Gli annunci di lavoro non potranno più limitarsi a formule generiche: dovranno indicare il contratto collettivo applicato e il trattamento economico previsto, con l'obiettivo dichiarato di contrastare i cosiddetti \"contratti pirata\".</p>\n      <p><b>Piattaforme e lavoro digitale.</b> Una delle novità più rilevanti riguarda il lavoro organizzato tramite app: se l'attività è gestita e controllata algoritmicamente dalla piattaforma, il rapporto potrà essere qualificato come lavoro subordinato — un cambio di paradigma per il settore del food delivery e della logistica su piattaforma.</p>\n      <p>Il decreto dovrà essere convertito in legge dal Parlamento entro 60 giorni dalla pubblicazione.</p>\n    ",
+      "norma": "D.L. 30 aprile 2026, n. 62 — G.U. n. 99/2026",
       "date": "19 mag 2026",
       "fonte": "Redazione NormaLavoro",
-      "norma": "D.L. 30 aprile 2026, n. 62 — G.U. n. 99/2026"
+      "cat": "decreti",
+      "title": "Decreto Primo Maggio 2026: salario giusto, incentivi under 35 e stretta sul caporalato digitale",
+      "tag": "Decreti",
+      "hero": true,
+      "id": 1
     },
     {
-      "id": 2,
-      "cat": "ccnl",
-      "tag": "CCNL",
-      "title": "CCNL Metalmeccanici Industria: firmato il rinnovo, sì al 93% dei lavoratori",
       "excerpt": "Federmeccanica-Assistal e i sindacati Fim, Fiom e Uilm hanno sottoscritto il 22 novembre 2025 il rinnovo 2025-2028: aumento di 205,32 euro sul livello medio e welfare aziendale a 250 euro.",
       "body": "\n      <p>Il 22 novembre 2025 Federmeccanica, Assistal e le organizzazioni sindacali Fim-Cisl, Fiom-Cgil e Uilm-Uil hanno sottoscritto il rinnovo del CCNL Metalmeccanici Industria, scaduto da giugno 2024. L'accordo riguarda oltre un milione e mezzo di lavoratori e più di sessantamila aziende.</p>\n      <p><b>Parte economica.</b> È previsto un aumento complessivo di 205,32 euro mensili sul livello medio (C3, ex 5° livello), distribuito in più tranche tra il 2025 e il 2028. I flexible benefit per il welfare aziendale salgono da 200 a 250 euro, da erogare entro febbraio 2026.</p>\n      <p><b>Parte normativa.</b> Dal 1° gennaio 2026 i lavoratori in staff leasing presso lo stesso utilizzatore per oltre 48 mesi acquisiscono il diritto all'assunzione a tempo indeterminato. Introdotti anche 3 giorni di permesso annui per malattia dei figli fino a 4 anni, con indennità all'80% a carico azienda, e un ampliamento del periodo di comporto per i lavoratori con disabilità certificata.</p>\n      <p>Il contratto, valido fino al 30 giugno 2028, è stato successivamente ratificato dai lavoratori con il 93% di voti favorevoli nella consultazione certificata.</p>\n    ",
+      "norma": "Accordo di rinnovo CCNL Metalmeccanici Industria, 22 novembre 2025",
       "date": "23 feb 2026",
       "fonte": "Redazione NormaLavoro",
-      "norma": "Accordo di rinnovo CCNL Metalmeccanici Industria, 22 novembre 2025"
+      "cat": "ccnl",
+      "title": "CCNL Metalmeccanici Industria: firmato il rinnovo, sì al 93% dei lavoratori",
+      "tag": "CCNL",
+      "id": 2
     },
     {
-      "id": 3,
-      "cat": "ccnl",
-      "tag": "CCNL",
-      "title": "CCNL Terziario, Commercio e Servizi: nuovo accordo in vigore fino al 2028",
       "excerpt": "Il contratto per le micro, piccole e medie imprese del settore è in vigore dal 29 dicembre 2025, con un impianto unitario e semplificato e un rafforzamento della bilateralità.",
       "body": "\n      <p>È stato sottoscritto il nuovo CCNL Terziario, Commercio e Servizi applicabile alle micro, piccole e medie imprese del settore, in vigore dal 29 dicembre 2025 al 28 dicembre 2028.</p>\n      <p>Le parti sociali hanno puntato su un impianto contrattuale unitario e semplificato, con l'obiettivo di garantire certezza sui costi del lavoro per le aziende e, allo stesso tempo, rafforzare le tutele per i lavoratori in un contesto segnato da inflazione e trasformazione digitale.</p>\n      <p>Il rinnovo conferma il ruolo della bilateralità, con l'obbligatorietà degli enti di riferimento, tra cui Fonditalia per la formazione professionale dei lavoratori del settore.</p>\n    ",
+      "norma": "CCNL Terziario, Commercio e Servizi, in vigore dal 29/12/2025",
       "date": "28 gen 2026",
       "fonte": "Redazione NormaLavoro",
-      "norma": "CCNL Terziario, Commercio e Servizi, in vigore dal 29/12/2025"
+      "cat": "ccnl",
+      "title": "CCNL Terziario, Commercio e Servizi: nuovo accordo in vigore fino al 2028",
+      "tag": "CCNL",
+      "id": 3
     },
     {
-      "id": 4,
-      "cat": "aiact",
-      "tag": "AI Act",
-      "title": "AI Act: il Digital Omnibus rinvia al 2027 gli obblighi sui sistemi HR ad alto rischio",
       "excerpt": "La scadenza per i sistemi IA ad alto rischio usati in selezione e valutazione del personale slitta dal 2 agosto 2026 al 2 dicembre 2027. Restano invece pienamente in vigore gli obblighi di informativa ai lavoratori e quelli di trasparenza sui sistemi generativi.",
       "body": "\n      <p>Il Regolamento (UE) 2024/1689 — l'AI Act — classifica come \"ad alto rischio\" i sistemi di intelligenza artificiale utilizzati per la selezione del personale e la valutazione delle performance. Con il pacchetto \"Digital Omnibus\", approvato dal Parlamento europeo il 16 giugno 2026 e dal Consiglio il 29 giugno, la scadenza per gli obblighi pieni relativi a questi sistemi è stata posticipata dal 2 agosto 2026 al 2 dicembre 2027.</p>\n      <p><b>Cosa resta invariato.</b> Due obblighi non sono stati toccati dal rinvio: l'articolo 26 impone ai datori di lavoro di informare lavoratori e rappresentanti sindacali prima di attivare un sistema IA ad alto rischio sul posto di lavoro; l'articolo 50, relativo alla trasparenza sui sistemi generativi (chatbot, contenuti sintetici), è pienamente applicabile dal 2 agosto 2026.</p>\n      <p>Le sanzioni previste dal Regolamento per le violazioni restano severe: fino a 15 milioni di euro o al 3% del fatturato globale annuo per le violazioni più gravi.</p>\n    ",
+      "norma": "Regolamento (UE) 2024/1689 — artt. 26 e 50",
       "date": "1 lug 2026",
       "fonte": "Redazione NormaLavoro",
-      "norma": "Regolamento (UE) 2024/1689 — artt. 26 e 50"
+      "cat": "aiact",
+      "title": "AI Act: il Digital Omnibus rinvia al 2027 gli obblighi sui sistemi HR ad alto rischio",
+      "tag": "AI Act",
+      "id": 4
     },
     {
-      "id": 5,
-      "cat": "ccnl",
-      "tag": "CCNL",
-      "title": "CCNL Metalmeccanica PMI-Confapi: sottoscritta l'ipotesi di rinnovo",
       "excerpt": "Unionmeccanica Confapi e i sindacati Fim, Fiom e Uilm hanno siglato il 4 giugno 2026 l'ipotesi di accordo per il settore PMI: aumento a regime di 200 euro lordi sul 5° livello.",
       "body": "\n      <p>Il 4 giugno 2026 Unionmeccanica Confapi e le organizzazioni sindacali Fim-Cisl, Fiom-Cgil e Uilm-Uil hanno sottoscritto l'ipotesi di accordo per il rinnovo del CCNL dei lavoratori addetti alla piccola e media industria metalmeccanica, orafa e installazione di impianti.</p>\n      <p>Il rinnovo decorre dal 4 giugno 2026 e avrà validità fino al 31 dicembre 2028. L'aumento a regime previsto è di 200 euro lordi mensili per il 5° livello, con relativa riparametrazione sugli altri livelli contrattuali.</p>\n      <p>Entro il 23 luglio 2026 è prevista la consultazione dei lavoratori, passaggio necessario per rendere efficace l'ipotesi di rinnovo.</p>\n    ",
+      "norma": "Ipotesi di accordo CCNL Metalmeccanica PMI-Confapi, 4 giugno 2026",
       "date": "15 giu 2026",
       "fonte": "Redazione NormaLavoro",
-      "norma": "Ipotesi di accordo CCNL Metalmeccanica PMI-Confapi, 4 giugno 2026"
+      "cat": "ccnl",
+      "title": "CCNL Metalmeccanica PMI-Confapi: sottoscritta l'ipotesi di rinnovo",
+      "tag": "CCNL",
+      "id": 5
     },
     {
-      "id": 6,
-      "cat": "scadenze",
-      "tag": "Scadenze",
-      "title": "TFR e previdenza complementare: entro il 30 giugno la scelta per il primo semestre 2026",
       "excerpt": "Il Decreto Primo Maggio consente ai lavoratori di destinare alla previdenza complementare il TFR maturato nel primo semestre 2026, anche se già versato al fondo di tesoreria INPS.",
       "body": "\n      <p>Tra le disposizioni di natura fiscale del Decreto Primo Maggio 2026, i versamenti relativi al primo semestre 2026 effettuati entro il 16 luglio sono considerati tempestivi e non soggetti a sanzioni.</p>\n      <p>I lavoratori hanno inoltre la possibilità, entro il 30 giugno 2026, di scegliere di destinare il TFR maturato nel periodo alla previdenza complementare, anche nei casi in cui l'importo sia già stato versato al fondo di tesoreria INPS.</p>\n    ",
+      "norma": "D.L. 62/2026, disposizioni su TFR e previdenza complementare",
       "date": "20 mag 2026",
       "fonte": "Redazione NormaLavoro",
-      "norma": "D.L. 62/2026, disposizioni su TFR e previdenza complementare"
+      "cat": "scadenze",
+      "title": "TFR e previdenza complementare: entro il 30 giugno la scelta per il primo semestre 2026",
+      "tag": "Scadenze",
+      "id": 6
     },
     {
-      "id": 7,
-      "cat": "caso",
-      "tag": "Il Caso",
-      "title": "Il caso: l'azienda vuole installare telecamere in magazzino. Cosa deve fare l'HR prima di procedere?",
       "excerpt": "Un titolare chiede di installare telecamere per motivi di sicurezza. L'HR deve sapere che l'installazione senza procedura corretta è reato: ecco i passaggi obbligatori secondo l'art. 4 dello Statuto dei Lavoratori.",
       "body": "\n      <div class=\"caso-block\">\n        <h4>Il problema</h4>\n        <p>Il titolare di un'azienda con magazzino chiede al responsabile HR di far installare alcune telecamere di sorveglianza, per motivi di sicurezza sui furti di merce. Le telecamere riprenderebbero anche le postazioni di lavoro degli addetti al magazzino.</p>\n      </div>\n      <div class=\"caso-block\">\n        <h4>Cosa dice la normativa</h4>\n        <p>L'articolo 4 della Legge 300/1970 (Statuto dei Lavoratori), come riscritto dal D.Lgs. 151/2015, stabilisce che gli impianti da cui derivi anche solo la possibilità di controllo a distanza dei lavoratori possono essere installati solo per esigenze organizzative e produttive, per la sicurezza del lavoro o per la tutela del patrimonio aziendale — mai per il solo controllo dell'attività lavorativa.</p>\n        <p>Prima di attivare l'impianto serve obbligatoriamente uno tra questi due passaggi: un accordo con le rappresentanze sindacali aziendali (RSU o RSA), oppure — in assenza di rappresentanze o di accordo — un'autorizzazione dell'Ispettorato Nazionale del Lavoro, richiesta con relazione tecnica su finalità, posizionamento delle telecamere e tempi di conservazione delle immagini.</p>\n        <p>La Corte di Cassazione ha chiarito più volte (da ultimo con sentenza n. 50919/2019) che il consenso individuale dei lavoratori non sostituisce questa procedura: installare l'impianto senza accordo o autorizzazione integra reato, indipendentemente dal fatto che i dipendenti abbiano detto di essere d'accordo.</p>\n      </div>\n      <div class=\"caso-block\">\n        <h4>Cosa deve fare l'HR, in pratica</h4>\n        <p>1) Verificare se in azienda sono presenti RSU o RSA e avviare con loro la trattativa per l'accordo, specificando finalità, aree riprese, tempi di conservazione e chi può accedere ai filmati.</p>\n        <p>2) In assenza di rappresentanze sindacali, predisporre l'istanza telematica all'INL con relazione tecnica e planimetria.</p>\n        <p>3) In ogni caso, predisporre l'informativa scritta ai lavoratori e i cartelli nelle aree riprese — è un adempimento distinto e sempre obbligatorio, anche quando l'accordo o l'autorizzazione sono già stati ottenuti.</p>\n        <p>4) Non attivare mai l'impianto prima di aver ricevuto risposta espressa dall'INL: il silenzio dell'Ispettorato non equivale ad assenso.</p>\n      </div>\n    ",
+      "norma": "L. 300/1970, art. 4 · Cass. pen. n. 50919/2019",
       "date": "12 ago 2026",
       "fonte": "Redazione NormaLavoro",
-      "norma": "L. 300/1970, art. 4 · Cass. pen. n. 50919/2019"
+      "cat": "caso",
+      "title": "Il caso: l'azienda vuole installare telecamere in magazzino. Cosa deve fare l'HR prima di procedere?",
+      "tag": "Il Caso",
+      "id": 7
     },
     {
       "id": 8,
@@ -89,16 +89,6 @@
       "norma": "Cass. civ., Sez. Lavoro, sent. 2 luglio 2026, n. 22622"
     },
     {
-      "id": 9,
-      "cat": "giurisprudenza",
-      "tag": "Giurisprudenza",
-      "title": "Licenziamento per superamento del comporto: nullo se il periodo non era ancora maturato",
-      "excerpt": "La Cassazione (ordinanza n. 7969/2026) conferma che il recesso intimato prima del reale superamento del periodo di comporto è nullo, con diritto alla reintegrazione, anche se l'errore dipende da una successiva riqualificazione delle assenze.",
-      "body": "\n      <p>Con l'ordinanza n. 7969 del 31 marzo 2026, la Corte di Cassazione è tornata su un tema di rilievo pratico quotidiano per la gestione del personale: il licenziamento per superamento del periodo di comporto (il periodo massimo di assenza per malattia durante il quale il posto di lavoro è protetto).</p>\n      <p><b>Il caso.</b> Un'azienda aveva licenziato un dipendente ritenendo superato il periodo di comporto. Successivamente, alcune assenze erano state riqualificate, facendo emergere che il periodo non era in realtà ancora maturato al momento del recesso.</p>\n      <p><b>Il principio stabilito.</b> La Cassazione ha chiarito che, nei rapporti soggetti al D.Lgs. 23/2015 (le c.d. \"tutele crescenti\"), il licenziamento intimato prima dell'effettivo superamento del comporto è nullo — non semplicemente illegittimo — con conseguente applicazione della tutela reintegratoria e risarcitoria piena, la più favorevole per il lavoratore. Questo vale anche quando l'errore di calcolo del datore di lavoro dipende da una riqualificazione delle assenze avvenuta successivamente al licenziamento.</p>\n      <p><b>Perché conta per l'HR.</b> La pronuncia richiama alla massima attenzione nel calcolo dei giorni di comporto prima di procedere a un licenziamento per questa causale: un errore di conteggio, anche se determinato da circostanze non immediatamente evidenti al momento del recesso, espone l'azienda al rischio massimo di reintegrazione.</p>\n    ",
-      "fonte": "Redazione NormaLavoro",
-      "norma": "Cass. civ., Sez. Lavoro, ord. 31 marzo 2026, n. 7969"
-    },
-    {
       "id": 10,
       "cat": "giurisprudenza",
       "tag": "Giurisprudenza",
@@ -107,6 +97,17 @@
       "body": "\n      <p>Con l'ordinanza n. 3263 del 13 febbraio 2026, la Corte di Cassazione ha affrontato un tema di crescente attualità: la rilevanza disciplinare della condotta del dipendente che, nell'esecuzione di un bonifico, si lasci ingannare da una comunicazione fraudolenta apparentemente proveniente dai vertici aziendali (il classico schema del \"CEO fraud\" o phishing aziendale).</p>\n      <p><b>Il principio stabilito.</b> La Cassazione ha confermato la legittimità del licenziamento, affermando che il lavoratore è tenuto a un comportamento diligente commisurato alla propria qualifica professionale: la formazione aziendale sulla sicurezza informatica è certamente rilevante, ma non elimina il dovere individuale del dipendente qualificato di mantenere un livello di attenzione adeguato al proprio ruolo prima di autorizzare un'operazione finanziaria.</p>\n      <p><b>Sull'onere della prova.</b> La Corte ha inoltre chiarito che resta comunque a carico del datore di lavoro l'onere di dimostrare i fatti alla base del licenziamento — nel caso specifico, tale onere era stato correttamente ritenuto soddisfatto dai giudici di merito.</p>\n      <p><b>Perché conta per l'HR.</b> La pronuncia sposta l'attenzione dalla sola compliance organizzativa (aver fornito formazione e procedure) alla responsabilità individuale del lavoratore con mansioni qualificate. Resta comunque essenziale documentare adeguatamente sia la formazione erogata sia le procedure aziendali in materia di sicurezza informatica, per poter dimostrare in giudizio, se necessario, sia gli obblighi del dipendente sia l'adempimento datoriale.</p>\n    ",
       "fonte": "Redazione NormaLavoro",
       "norma": "Cass. civ., Sez. Lavoro, ord. 13 febbraio 2026, n. 3263"
+    },
+    {
+      "excerpt": "Il Consiglio di Stato (sent. n. 4969/2026) conferma la legittimità del verbale con cui l'Ispettorato ha imposto a un'azienda del commercio di negoziare un'indennità per lavoro a contatto con il freddo, pur in assenza di previsione nel CCNL applicato.",
+      "body": "Il Consiglio di Stato (sent. n. 4969/2026) conferma la legittimità del verbale con cui l'Ispettorato ha imposto a un'azienda del commercio di negoziare un'indennità per lavoro a contatto con il freddo, pur in assenza di previsione nel CCNL applicato, in nome dell'adeguatezza sostanziale della retribuzione ex art. 36 Cost.",
+      "norma": "Consiglio di Stato (sent. n. 4969/2026)",
+      "fonte": "Redazione NormaLavoro",
+      "cat": "giurisprudenza",
+      "title": "Potere di disposizione dell'INL: può imporre l'apertura di un negoziato aziendale",
+      "tag": "Potere di disposizione dell'INL: può imporre l'apertura di un negoziato aziendale per adeguare la retribuzione al lavoro in cella frigorifera",
+      "hero": true,
+      "id": 11
     }
   ]
 }
