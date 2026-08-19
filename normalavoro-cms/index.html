@@ -410,6 +410,14 @@
   <input type="text" name="bot-field" />
 </form>
 
+<form name="contatto-diretto" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="nome" />
+  <input type="email" name="email" />
+  <input type="text" name="oggetto" />
+  <textarea name="messaggio"></textarea>
+  <input type="text" name="bot-field" />
+</form>
+
 
 <header>
   <div class="header-top">
@@ -427,7 +435,8 @@
     <a href="?sezione=caso">Il Caso</a>
     <a href="?sezione=giurisprudenza">Giurisprudenza</a>
     <a href="?sezione=scadenze">Scadenze</a>
-    <a href="?sezione=esperto">L'esperto risponde</a>
+    <a href="?sezione=esperto">Scrivici i tuoi quesiti</a>
+    <a href="?sezione=contatti">Contatti</a>
   </div>
 </header>
 
@@ -468,7 +477,7 @@
       </div>
 
       <div class="esperto-section" id="sez-esperto">
-        <div class="section-label" style="margin-bottom:16px;">L'esperto risponde</div>
+        <div class="section-label" style="margin-bottom:16px;">Scrivici i tuoi quesiti</div>
         <div class="qa-item">
           <div class="qa-question"><span class="bubble">D</span><span>Posso installare telecamere in azienda senza avvisare i dipendenti?</span></div>
           <div class="qa-answer"><span class="bubble">R</span><span>No. L'informativa ai lavoratori è un adempimento autonomo, distinto dall'accordo sindacale o dall'autorizzazione INL. Vedi il caso completo qui a fianco.</span></div>
@@ -641,9 +650,40 @@ function showArticlePage(id){
 
 function showSectionPage(sezione){
 
+  if(sezione === 'contatti'){
+    document.getElementById('sectionPageContent').innerHTML = `
+      <h1 style="font-family:'Fraunces'; font-weight:700; font-size:30px; margin-bottom:12px;">Contatti</h1>
+      <p style="color:#5a5f6b; font-size:15px; margin-bottom:28px; max-width:600px;">
+        Per richieste di consulenza, collaborazioni o qualsiasi contatto diretto con la redazione,
+        scrivici tramite questo modulo: la tua richiesta arriva direttamente a noi e resta privata,
+        non viene pubblicata sul sito.
+      </p>
+      <div class="esperto-section" style="max-width:560px;">
+        <div class="ask-form" style="margin-top:0; padding-top:0; border-top:none;">
+          <label for="contactName">Nome</label>
+          <input type="text" id="contactName" placeholder="Il tuo nome">
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" placeholder="La tua email">
+          <label for="contactSubject">Oggetto</label>
+          <input type="text" id="contactSubject" placeholder="Di cosa si tratta">
+          <label for="contactMessage">Messaggio</label>
+          <textarea id="contactMessage" rows="5" placeholder="Scrivi qui la tua richiesta..."></textarea>
+          <button onclick="submitContact()">Invia messaggio</button>
+          <div class="ask-note" id="contactFeedback" style="display:none;"></div>
+        </div>
+      </div>
+    `;
+    document.getElementById('homeContent').style.display = 'none';
+    document.getElementById('articlePage').style.display = 'none';
+    document.getElementById('sectionPage').style.display = 'block';
+    document.title = 'Contatti — NormaLavoro';
+    window.scrollTo(0, 0);
+    return;
+  }
+
   if(sezione === 'esperto'){
     document.getElementById('sectionPageContent').innerHTML = `
-      <h1 style="font-family:'Fraunces'; font-weight:700; font-size:30px; margin-bottom:24px;">L'esperto risponde</h1>
+      <h1 style="font-family:'Fraunces'; font-weight:700; font-size:30px; margin-bottom:24px;">Scrivici i tuoi quesiti</h1>
       <div class="esperto-section" style="max-width:640px;">
         <div class="qa-item">
           <div class="qa-question"><span class="bubble">D</span><span>Posso installare telecamere in azienda senza avvisare i dipendenti?</span></div>
@@ -677,7 +717,7 @@ function showSectionPage(sezione){
   document.getElementById('homeContent').style.display = 'none';
   document.getElementById('articlePage').style.display = 'none';
   document.getElementById('sectionPage').style.display = 'block';
-  document.title = (catNames[sezione] || "L'esperto risponde") + ' — NormaLavoro';
+  document.title = (catNames[sezione] || "Scrivici i tuoi quesiti") + ' — NormaLavoro';
   window.scrollTo(0, 0);
 }
 
@@ -782,6 +822,45 @@ function showAskFeedback(msg, isError, suffix){
 // NEWSLETTER — iscrizioni salvate localmente nel browser
 // ============================================================
 const SUBS_KEY = 'normalavoro_iscrizioni';
+
+function submitContact(){
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const subject = document.getElementById('contactSubject').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if(message === ''){
+    showContactFeedback('Scrivi un messaggio prima di inviare.', true);
+    return;
+  }
+  if(!re.test(email)){
+    showContactFeedback('Inserisci un indirizzo email valido, così possiamo risponderti.', true);
+    return;
+  }
+
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: encodeFormData({ 'form-name': 'contatto-diretto', nome: name, email: email, oggetto: subject, messaggio: message, 'bot-field': '' })
+  }).then(() => {
+    document.getElementById('contactName').value = '';
+    document.getElementById('contactEmail').value = '';
+    document.getElementById('contactSubject').value = '';
+    document.getElementById('contactMessage').value = '';
+    showContactFeedback('Messaggio inviato. Ti risponderemo al più presto.', false);
+  }).catch(() => {
+    showContactFeedback('Non è stato possibile inviare il messaggio (problema di connessione). Riprova più tardi.', true);
+  });
+}
+
+function showContactFeedback(msg, isError){
+  const el = document.getElementById('contactFeedback');
+  if(!el) return;
+  el.textContent = msg;
+  el.style.color = isError ? '#a13a2e' : '#3f6b4a';
+  el.style.display = 'block';
+}
 
 function submitNewsletter(){
   const input = document.getElementById('newsletterEmail');
