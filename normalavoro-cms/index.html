@@ -394,22 +394,11 @@
 <body>
 
 <!-- Modulo statico nascosto: necessario perché Netlify riconosca il form
-     "L'esperto risponde" durante il deploy e lo registri per la raccolta
-     reale delle domande (dashboard Netlify + notifica email). Il modulo
-     visibile agli utenti è generato via JavaScript più sotto e invia i
-     dati qui tramite fetch(), stessa tecnica raccomandata da Netlify per
-     i siti che generano l'interfaccia dinamicamente. -->
-<form name="domanda-esperto" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input type="text" name="nome" />
-  <textarea name="domanda"></textarea>
-  <input type="text" name="bot-field" />
-</form>
-
-<form name="iscrizione-newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input type="email" name="email" />
-  <input type="text" name="bot-field" />
-</form>
-
+     "Contatti" durante il deploy e lo registri per la raccolta reale dei
+     messaggi (dashboard Netlify + notifica email). Il modulo visibile
+     agli utenti è generato via JavaScript più sotto e invia i dati qui
+     tramite fetch(), stessa tecnica raccomandata da Netlify per i siti
+     che generano l'interfaccia dinamicamente. -->
 <form name="contatto-diretto" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input type="text" name="nome" />
   <input type="email" name="email" />
@@ -434,8 +423,6 @@
     <a href="?sezione=ccnl">CCNL</a>
     <a href="?sezione=caso">Il Caso</a>
     <a href="?sezione=giurisprudenza">Giurisprudenza</a>
-    <a href="?sezione=scadenze">Scadenze</a>
-    <a href="?sezione=esperto">Scrivici i tuoi quesiti</a>
     <a href="?sezione=contatti">Contatti</a>
   </div>
 </header>
@@ -449,7 +436,7 @@
   <div class="layout-grid">
 
     <div class="main-col">
-      <section class="section-block" id="sez-decreti">
+      <section class="section-block" id="sez-normativa">
         <div class="section-head"><h2>Normativa</h2><span class="count" id="count-normativa"></span></div>
         <div class="article-grid grid-2" id="grid-normativa"></div>
       </section>
@@ -471,48 +458,13 @@
     </div>
 
     <div class="sidebar">
-      <div>
-        <div class="section-label">Prossime scadenze</div>
-        <div class="scadenzario" id="scadenzario"></div>
-      </div>
-
-      <div class="esperto-section" id="sez-esperto">
-        <div class="section-label" style="margin-bottom:16px;">Scrivici i tuoi quesiti</div>
-        <div class="qa-item">
-          <div class="qa-question"><span class="bubble">D</span><span>Posso installare telecamere in azienda senza avvisare i dipendenti?</span></div>
-          <div class="qa-answer"><span class="bubble">R</span><span>No. L'informativa ai lavoratori è un adempimento autonomo, distinto dall'accordo sindacale o dall'autorizzazione INL. Vedi il caso completo qui a fianco.</span></div>
-        </div>
-        <div class="qa-item">
-          <div class="qa-question"><span class="bubble">D</span><span>Il consenso dei dipendenti basta per installare la videosorveglianza?</span></div>
-          <div class="qa-answer"><span class="bubble">R</span><span>No. La Cassazione ha chiarito che il consenso individuale non sana la mancata procedura ex art. 4.</span></div>
-        </div>
-        <div id="userQuestionsList"></div>
-        <div class="ask-form">
-          <label for="askName">Il tuo nome (facoltativo)</label>
-          <input type="text" id="askName" placeholder="Come vuoi firmarti">
-          <label for="askQuestion">La tua domanda</label>
-          <textarea id="askQuestion" rows="3" placeholder="Scrivi qui il tuo quesito..."></textarea>
-          <button onclick="submitQuestion()">Invia la domanda</button>
-          <div class="ask-note" id="askFeedback" style="display:none;"></div>
-        </div>
-      </div>
-
-      <div style="background:var(--paper-warm); border:1px solid var(--line); border-radius:16px; padding:22px;">
-        <div class="section-label" style="margin-bottom:14px;">Scadenze &amp; adempimenti</div>
-        <div class="article-grid" id="grid-scadenze"></div>
+      <div class="esperto-section" style="text-align:center;">
+        <div style="font-family:'Fraunces'; font-weight:700; font-size:20px; color:var(--navy); margin-bottom:10px;">Hai una domanda?</div>
+        <p style="font-size:14.5px; color:#5a5f6b; line-height:1.55; margin-bottom:18px;">Scrivici tramite il modulo di contatto: la tua richiesta arriva direttamente alla redazione.</p>
+        <a href="?sezione=contatti" style="display:inline-block; background:var(--navy); color:var(--gold-light); font-weight:700; font-size:14px; padding:12px 24px; border-radius:9px;">Vai ai contatti</a>
       </div>
     </div>
 
-  </div>
-
-  <div class="newsletter">
-    <h3>Non perdere gli aggiornamenti</h3>
-    <p>Decreti, rinnovi CCNL e normative HR ogni settimana nella tua casella.</p>
-    <div class="newsletter-form">
-      <input type="email" id="newsletterEmail" placeholder="La tua email">
-      <button onclick="submitNewsletter()">Iscriviti</button>
-    </div>
-    <div class="ask-note" id="newsletterFeedback" style="display:none; margin-top:10px;"></div>
   </div>
 
 </div><!-- /homeContent -->
@@ -530,8 +482,7 @@
 </main>
 
 <footer>
-  NormaLavoro — Notizie su diritto del lavoro e contrattazione collettiva<br>
-  Prototipo dimostrativo · Contenuti verificati su fonti primarie<br><br>
+  NormaLavoro — Notizie su diritto del lavoro e contrattazione collettiva<br><br>
   <a href="privacy.html" style="color:#9298a3;">Privacy</a> · <a href="cookie-policy.html" style="color:#9298a3;">Cookie Policy</a> · <a href="note-legali.html" style="color:#9298a3;">Note Legali</a>
 </footer>
 
@@ -572,11 +523,17 @@ const DEADLINES = [
 // ============================================================
 // RENDER
 // ============================================================
-const tagClass = { normativa:'tag-normativa', ccnl:'tag-ccnl', scadenze:'tag-scadenze', caso:'tag-caso', giurisprudenza:'tag-giurisprudenza' };
-const catNames = { normativa:'Normativa', ccnl:'CCNL', caso:'Il Caso', giurisprudenza:'Giurisprudenza', scadenze:'Scadenze' };
+const tagClass = { normativa:'tag-normativa', ccnl:'tag-ccnl', caso:'tag-caso', giurisprudenza:'tag-giurisprudenza' };
+const catNames = { normativa:'Normativa', ccnl:'CCNL', caso:'Il Caso', giurisprudenza:'Giurisprudenza' };
 
 function renderHero(){
-  const a = ARTICLES.find(x => x.hero) || ARTICLES[0];
+  // Se più articoli sono marcati "in evidenza", vince l'ULTIMO aggiunto
+  // (il pannello aggiunge i nuovi articoli in fondo all'elenco): così,
+  // quando dall'admin marchi un nuovo articolo come "hero", questo
+  // sostituisce correttamente quello precedente anche se ci si è
+  // dimenticati di disattivare il flag sul vecchio.
+  const heroCandidates = ARTICLES.filter(x => x.hero);
+  const a = heroCandidates[heroCandidates.length - 1] || ARTICLES[ARTICLES.length - 1];
   if(!a){ document.getElementById('heroArticle').style.display = 'none'; return; }
   document.getElementById('heroArticle').innerHTML = `
     <div class="hero-tag">In evidenza</div>
@@ -612,7 +569,7 @@ function cardHTML(a){
 
 function renderSections(searchTerm){
   searchTerm = searchTerm || '';
-  const cats = ['normativa', 'ccnl', 'caso', 'giurisprudenza', 'scadenze'];
+  const cats = ['normativa', 'ccnl', 'caso', 'giurisprudenza'];
   cats.forEach(cat => {
     const list = ARTICLES.filter(a => a.cat === cat).filter(a => {
       if(searchTerm === '') return true;
@@ -681,31 +638,7 @@ function showSectionPage(sezione){
     return;
   }
 
-  if(sezione === 'esperto'){
-    document.getElementById('sectionPageContent').innerHTML = `
-      <h1 style="font-family:'Fraunces'; font-weight:700; font-size:30px; margin-bottom:24px;">Scrivici i tuoi quesiti</h1>
-      <div class="esperto-section" style="max-width:640px;">
-        <div class="qa-item">
-          <div class="qa-question"><span class="bubble">D</span><span>Posso installare telecamere in azienda senza avvisare i dipendenti?</span></div>
-          <div class="qa-answer"><span class="bubble">R</span><span>No. L'informativa ai lavoratori è un adempimento autonomo, distinto dall'accordo sindacale o dall'autorizzazione INL: va sempre fornita, con cartelli visibili nelle aree riprese. Trovi l'analisi completa nella sezione "Il Caso".</span></div>
-        </div>
-        <div class="qa-item">
-          <div class="qa-question"><span class="bubble">D</span><span>Il consenso dei dipendenti basta per installare la videosorveglianza?</span></div>
-          <div class="qa-answer"><span class="bubble">R</span><span>No. La Cassazione ha chiarito più volte che il consenso individuale non sana la mancata procedura ex art. 4: serve comunque l'accordo sindacale o l'autorizzazione dell'Ispettorato del Lavoro.</span></div>
-        </div>
-        <div id="userQuestionsListPage"></div>
-        <div class="ask-form">
-          <label for="askNamePage">Il tuo nome (facoltativo)</label>
-          <input type="text" id="askNamePage" placeholder="Come vuoi firmarti">
-          <label for="askQuestionPage">La tua domanda</label>
-          <textarea id="askQuestionPage" rows="4" placeholder="Scrivi qui il tuo quesito su diritto del lavoro, CCNL, gestione HR..."></textarea>
-          <button onclick="submitQuestion('Page')">Invia la domanda</button>
-          <div class="ask-note" id="askFeedbackPage" style="display:none;"></div>
-        </div>
-      </div>
-    `;
-    renderUserQuestions();
-  } else {
+  {
     const list = ARTICLES.filter(a => a.cat === sezione).sort((a, b) => b.id - a.id);
     document.getElementById('sectionPageContent').innerHTML = `
       <h1 style="font-family:'Fraunces'; font-weight:700; font-size:30px; margin-bottom:8px;">${catNames[sezione] || sezione}</h1>
@@ -743,85 +676,16 @@ function routeFromURL(){
 
 // ============================================================
 // L'ESPERTO RISPONDE — domande salvate localmente nel browser
-// (funziona subito, senza connettori esterni; per renderle visibili
-// a tutti i visitatori del sito andrebbero salvate su un database:
-// quello richiede un backend, che questo file da solo non ha)
 // ============================================================
-const QUESTIONS_KEY = 'normalavoro_domande';
-
-function loadQuestions(){
-  try{
-    const raw = localStorage.getItem(QUESTIONS_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch(e){ return []; }
-}
-
-function saveQuestions(list){
-  localStorage.setItem(QUESTIONS_KEY, JSON.stringify(list));
-}
-
-function renderUserQuestions(){
-  const list = loadQuestions();
-  const html = list.length === 0 ? '' : list.map(q => `
-    <div class="qa-item">
-      <div class="qa-question"><span class="bubble">D</span><span>${q.text}${q.name ? ' — <span style="font-weight:400;color:#9298a3;">' + q.name + '</span>' : ''}</span></div>
-      <div class="qa-answer"><span class="bubble">⏳</span><span style="font-style:italic; color:#9298a3;">In attesa di risposta della redazione</span></div>
-    </div>
-  `).join('');
-  const c1 = document.getElementById('userQuestionsList');
-  const c2 = document.getElementById('userQuestionsListPage');
-  if(c1) c1.innerHTML = html;
-  if(c2) c2.innerHTML = html;
-}
+// CONTATTI — invio reale tramite Netlify Forms
+// (funziona da subito: le richieste arrivano nella dashboard Netlify
+// e, se configurata, via notifica email)
+// ============================================================
 
 // Codifica i dati in formato compatibile con Netlify Forms
 function encodeFormData(data){
   return Object.keys(data).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k])).join('&');
 }
-
-function submitQuestion(suffix){
-  suffix = suffix || '';
-  const qText = document.getElementById('askQuestion' + suffix).value.trim();
-  const qName = document.getElementById('askName' + suffix).value.trim();
-  if(qText === ''){
-    showAskFeedback('Scrivi prima la tua domanda nel campo di testo.', true, suffix);
-    return;
-  }
-
-  // 1) Mostra subito la domanda nella pagina (esperienza immediata per chi scrive)
-  const list = loadQuestions();
-  list.unshift({ text: qText, name: qName, ts: Date.now() });
-  saveQuestions(list);
-  renderUserQuestions();
-  document.getElementById('askQuestion' + suffix).value = '';
-  document.getElementById('askName' + suffix).value = '';
-
-  // 2) Invia davvero la domanda a Netlify, così arriva alla redazione
-  //    (dashboard Netlify → Forms, più eventuale notifica email se configurata)
-  fetch('/', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: encodeFormData({ 'form-name': 'domanda-esperto', nome: qName, domanda: qText, 'bot-field': '' })
-  }).then(() => {
-    showAskFeedback('Domanda inviata. Comparirà qui sopra "in attesa di risposta" — la redazione la risponderà appena possibile.', false, suffix);
-  }).catch(() => {
-    showAskFeedback('Domanda salvata qui sulla pagina, ma non è stato possibile inviarla alla redazione (problema di connessione). Riprova più tardi.', true, suffix);
-  });
-}
-
-function showAskFeedback(msg, isError, suffix){
-  const el = document.getElementById('askFeedback' + (suffix || ''));
-  if(!el) return;
-  el.textContent = msg;
-  el.style.color = isError ? '#a13a2e' : '#3f6b4a';
-  el.style.display = 'block';
-  setTimeout(() => { el.style.display = 'none'; }, 5000);
-}
-
-// ============================================================
-// NEWSLETTER — iscrizioni salvate localmente nel browser
-// ============================================================
-const SUBS_KEY = 'normalavoro_iscrizioni';
 
 function submitContact(){
   const name = document.getElementById('contactName').value.trim();
@@ -862,41 +726,6 @@ function showContactFeedback(msg, isError){
   el.style.display = 'block';
 }
 
-function submitNewsletter(){
-  const input = document.getElementById('newsletterEmail');
-  const email = input.value.trim();
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!re.test(email)){
-    showNewsletterFeedback('Inserisci un indirizzo email valido.', true);
-    return;
-  }
-  try{
-    const raw = localStorage.getItem(SUBS_KEY);
-    const list = raw ? JSON.parse(raw) : [];
-    if(!list.includes(email)) list.push(email);
-    localStorage.setItem(SUBS_KEY, JSON.stringify(list));
-  } catch(e){}
-  input.value = '';
-
-  fetch('/', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: encodeFormData({ 'form-name': 'iscrizione-newsletter', email: email, 'bot-field': '' })
-  }).then(() => {
-    showNewsletterFeedback('Iscrizione registrata. Riceverai gli aggiornamenti a questo indirizzo.', false);
-  }).catch(() => {
-    showNewsletterFeedback('Non è stato possibile completare l\'iscrizione (problema di connessione). Riprova più tardi.', true);
-  });
-}
-
-function showNewsletterFeedback(msg, isError){
-  const el = document.getElementById('newsletterFeedback');
-  el.textContent = msg;
-  el.style.display = 'block';
-  el.style.color = isError ? '#f0a8a0' : '#e0b45f';
-  setTimeout(() => { el.style.display = 'none'; }, 5000);
-}
-
 // ============================================================
 // RICERCA — filtra le sezioni in tempo reale
 // ============================================================
@@ -924,9 +753,7 @@ async function initSite(){
     ARTICLES = [];
   }
   renderHero();
-  renderDeadlines();
   renderSections();
-  renderUserQuestions();
   routeFromURL();
 }
 
