@@ -3,7 +3,7 @@ backend:
   branch: main
 
 # Dove vengono salvate le eventuali immagini caricate dal pannello
-media_folder: "immagini"
+media_folder: "normalavoro-cms/immagini"
 public_folder: "/immagini"
 
 # Mostra un'anteprima leggibile invece della vista tecnica grezza
@@ -18,7 +18,7 @@ collections:
     files:
       - name: "elenco"
         label: "Tutti gli articoli"
-        file: "articoli/articoli.json"
+        file: "normalavoro-cms/articoli/articoli.json"
         fields:
           - label: "Articoli"
             name: "articles"
