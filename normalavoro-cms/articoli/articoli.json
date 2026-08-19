@@ -1,15 +1,15 @@
 {
   "articles": [
     {
-      "id": 1,
-      "cat": "normativa",
-      "hero": true,
-      "title": "Decreto Primo Maggio 2026: salario giusto, incentivi under 35 e stretta sul caporalato digitale",
       "excerpt": "Il D.L. 62/2026, in vigore dal 1° maggio, introduce esoneri contributivi per giovani e donne svantaggiate, nuove regole di trasparenza per gli annunci di lavoro e una presunzione di subordinazione per i rider organizzati dalle piattaforme.",
       "body": "\n      <p>Il Decreto-Legge 30 aprile 2026, n. 62 — pubblicato in Gazzetta Ufficiale n. 99/2026 ed entrato in vigore il 1° maggio — interviene su tre fronti: salario giusto, incentivi all'occupazione e contrasto alle nuove forme di sfruttamento nell'economia digitale.</p>\n      <p><b>Incentivi per le assunzioni.</b> Per le lavoratrici svantaggiate assunte a tempo indeterminato entro il 31 dicembre 2026 è previsto un esonero contributivo totale, fino a 650 euro mensili (800 euro nelle regioni della ZES unica per il Mezzogiorno), per un massimo di 24 mesi. Per gli under 35 senza impiego stabile l'esonero pieno arriva fino a 500 euro mensili, elevato a 650 euro nelle regioni del Mezzogiorno.</p>\n      <p><b>Trasparenza retributiva.</b> Gli annunci di lavoro non potranno più limitarsi a formule generiche: dovranno indicare il contratto collettivo applicato e il trattamento economico previsto, con l'obiettivo dichiarato di contrastare i cosiddetti \"contratti pirata\".</p>\n      <p><b>Piattaforme e lavoro digitale.</b> Una delle novità più rilevanti riguarda il lavoro organizzato tramite app: se l'attività è gestita e controllata algoritmicamente dalla piattaforma, il rapporto potrà essere qualificato come lavoro subordinato — un cambio di paradigma per il settore del food delivery e della logistica su piattaforma.</p>\n      <p>Il decreto dovrà essere convertito in legge dal Parlamento entro 60 giorni dalla pubblicazione.</p>\n    ",
+      "norma": "D.L. 30 aprile 2026, n. 62 — G.U. n. 99/2026",
       "date": "19 mag 2026",
       "fonte": "Redazione NormaLavoro",
-      "norma": "D.L. 30 aprile 2026, n. 62 — G.U. n. 99/2026"
+      "cat": "normativa",
+      "title": "Decreto Primo Maggio 2026: salario giusto, incentivi under 35 e stretta sul caporalato digitale",
+      "hero": true,
+      "id": 1
     },
     {
       "id": 2,
@@ -97,6 +97,16 @@
       "body": "\n      <p>Con l'ordinanza n. 3263 del 13 febbraio 2026, la Corte di Cassazione ha affrontato un tema di crescente attualità: la rilevanza disciplinare della condotta del dipendente che, nell'esecuzione di un bonifico, si lasci ingannare da una comunicazione fraudolenta apparentemente proveniente dai vertici aziendali (il classico schema del \"CEO fraud\" o phishing aziendale).</p>\n      <p><b>Il principio stabilito.</b> La Cassazione ha confermato la legittimità del licenziamento, affermando che il lavoratore è tenuto a un comportamento diligente commisurato alla propria qualifica professionale: la formazione aziendale sulla sicurezza informatica è certamente rilevante, ma non elimina il dovere individuale del dipendente qualificato di mantenere un livello di attenzione adeguato al proprio ruolo prima di autorizzare un'operazione finanziaria.</p>\n      <p><b>Sull'onere della prova.</b> La Corte ha inoltre chiarito che resta comunque a carico del datore di lavoro l'onere di dimostrare i fatti alla base del licenziamento — nel caso specifico, tale onere era stato correttamente ritenuto soddisfatto dai giudici di merito.</p>\n      <p><b>Perché conta per l'HR.</b> La pronuncia sposta l'attenzione dalla sola compliance organizzativa (aver fornito formazione e procedure) alla responsabilità individuale del lavoratore con mansioni qualificate. Resta comunque essenziale documentare adeguatamente sia la formazione erogata sia le procedure aziendali in materia di sicurezza informatica, per poter dimostrare in giudizio, se necessario, sia gli obblighi del dipendente sia l'adempimento datoriale.</p>\n    ",
       "fonte": "Redazione NormaLavoro",
       "norma": "Cass. civ., Sez. Lavoro, ord. 13 febbraio 2026, n. 3263"
+    },
+    {
+      "hero": true,
+      "fonte": "Redazione NormaLavoro",
+      "id": 8,
+      "cat": "giurisprudenza",
+      "title": "Potere di disposizione dell'INL: può imporre un'indennità",
+      "excerpt": "Il Consiglio di Stato (sent. n. 4969/2026) conferma la legittimità di un provvedimento dell'Ispettorato del Lavoro che impone a un'azienda del commercio di negoziare un'indennità per lavoro in cella frigorifera, anche se il CCNL applicato non la prevede.",
+      "body": "<p>Con la sentenza n. 4969 del 22 giugno 2026, la Terza Sezione del Consiglio di Stato ha riformato una precedente decisione del TAR Veneto, confermando la piena legittimità di un provvedimento di disposizione emesso dall'Ispettorato Territoriale del Lavoro di Verona nei confronti di un'azienda del settore commercio.</p>\n\n<p><b>Il caso.</b> Otto lavoratori addetti al reparto surgelati di un'azienda che applica il CCNL Commercio operavano abitualmente in celle frigorifere con temperature comprese tra -20°C e -24°C — una condizione che il documento di valutazione dei rischi della stessa azienda classificava come \"rischio alto\". Il CCNL Commercio applicato non prevedeva alcuna indennità specifica per questa condizione di lavoro disagiato.</p>\n\n<p><b>Il principio stabilito.</b> Il Consiglio di Stato ha confermato che il potere di disposizione dell'Ispettorato del Lavoro può spingersi fino a imporre al datore di lavoro la negoziazione di un accordo aziendale che preveda un'indennità per lavoro disagiato in favore dei cosiddetti \"cellisti\", anche quando il CCNL applicato non la contempla — in questo caso, per analogia con quanto previsto dal CCNL del settore Alimentare per condizioni di lavoro assimilabili.</p>\n\n<p><b>Perché conta per l'HR.</b> La pronuncia conferma un orientamento che amplia sensibilmente la portata pratica del potere di disposizione: non si limita a sanzionare violazioni formali, ma può intervenire nel merito delle condizioni di lavoro quando il rischio è documentato dalla stessa valutazione aziendale, anche in assenza di una specifica previsione contrattuale. Per le aziende multi-settoriali o che applicano CCNL diversi da quello \"naturale\" della propria attività, è un ulteriore elemento da considerare nella gestione del rischio ispettivo.</p>",
+      "norma": "Consiglio di Stato (sent. n. 4969/2026)"
     }
   ]
 }
