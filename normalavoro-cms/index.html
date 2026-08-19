@@ -231,6 +231,7 @@
     margin-bottom:12px;
   }
   .tag-decreti{ background:#e7ecf5; color:var(--navy); }
+  .tag-normativa{ background:#e7ecf5; color:var(--navy); }
   .tag-ccnl{ background:#eaf1ea; color:var(--green); }
   .tag-aiact{ background:#f5ecdc; color:#8a5f18; }
   .tag-scadenze{ background:#f6e7e5; color:var(--red); }
@@ -369,6 +370,7 @@
   }
   #articlePageContent .article-body{
     font-size:16px; line-height:1.75; color:#333844;
+    text-align:justify;
   }
   #articlePageContent .article-body p{ margin-bottom:16px; }
   #articlePageContent .article-source{
@@ -385,6 +387,9 @@
     .hero h1{ font-size:34px; }
   }
 </style>
+<!-- Netlify Identity: permette ai link di invito/reset password di funzionare
+     anche se atterrano su questa pagina invece che su /admin -->
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -399,9 +404,8 @@
   </div>
   <div class="section-nav">
     <a href="index.html">Home</a>
-    <a href="?sezione=decreti">Decreti</a>
+    <a href="?sezione=normativa">Normativa</a>
     <a href="?sezione=ccnl">CCNL</a>
-    <a href="?sezione=aiact">AI Act &amp; Tech</a>
     <a href="?sezione=caso">Il Caso</a>
     <a href="?sezione=giurisprudenza">Giurisprudenza</a>
     <a href="?sezione=scadenze">Scadenze</a>
@@ -419,18 +423,13 @@
 
     <div class="main-col">
       <section class="section-block" id="sez-decreti">
-        <div class="section-head"><h2>Decreti</h2><span class="count" id="count-decreti"></span></div>
-        <div class="article-grid grid-2" id="grid-decreti"></div>
+        <div class="section-head"><h2>Normativa</h2><span class="count" id="count-normativa"></span></div>
+        <div class="article-grid grid-2" id="grid-normativa"></div>
       </section>
 
       <section class="section-block" id="sez-ccnl">
         <div class="section-head"><h2>CCNL</h2><span class="count" id="count-ccnl"></span></div>
         <div class="article-grid grid-2" id="grid-ccnl"></div>
-      </section>
-
-      <section class="section-block" id="sez-aiact">
-        <div class="section-head"><h2>AI Act &amp; Tech</h2><span class="count" id="count-aiact"></span></div>
-        <div class="article-grid grid-2" id="grid-aiact"></div>
       </section>
 
       <section class="section-block" id="sez-caso">
@@ -546,7 +545,8 @@ const DEADLINES = [
 // ============================================================
 // RENDER
 // ============================================================
-const tagClass = { decreti:'tag-decreti', ccnl:'tag-ccnl', aiact:'tag-aiact', scadenze:'tag-scadenze', caso:'tag-caso', giurisprudenza:'tag-giurisprudenza' };
+const tagClass = { normativa:'tag-normativa', ccnl:'tag-ccnl', scadenze:'tag-scadenze', caso:'tag-caso', giurisprudenza:'tag-giurisprudenza' };
+const catNames = { normativa:'Normativa', ccnl:'CCNL', caso:'Il Caso', giurisprudenza:'Giurisprudenza', scadenze:'Scadenze' };
 
 function renderHero(){
   const a = ARTICLES.find(x => x.hero) || ARTICLES[0];
@@ -573,7 +573,7 @@ function renderDeadlines(){
 function cardHTML(a){
   return `
     <a class="card" href="?art=${a.id}">
-      <div class="card-tag ${tagClass[a.cat]}">${a.tag}</div>
+      <div class="card-tag ${tagClass[a.cat]}">${catNames[a.cat]}</div>
       <h2>${a.title}</h2>
       <p>${a.excerpt}</p>
       <div class="card-meta">
@@ -585,12 +585,12 @@ function cardHTML(a){
 
 function renderSections(searchTerm){
   searchTerm = searchTerm || '';
-  const cats = ['decreti', 'ccnl', 'aiact', 'caso', 'giurisprudenza', 'scadenze'];
+  const cats = ['normativa', 'ccnl', 'caso', 'giurisprudenza', 'scadenze'];
   cats.forEach(cat => {
     const list = ARTICLES.filter(a => a.cat === cat).filter(a => {
       if(searchTerm === '') return true;
       return a.title.toLowerCase().includes(searchTerm) || a.excerpt.toLowerCase().includes(searchTerm);
-    });
+    }).sort((a, b) => b.id - a.id); // più recenti (ID più alto) in cima
     const grid = document.getElementById('grid-' + cat);
     const countEl = document.getElementById('count-' + cat);
     const sectionEl = document.getElementById('sez-' + cat);
@@ -610,7 +610,7 @@ function showArticlePage(id){
   const a = ARTICLES.find(x => x.id === id);
   if(!a){ showHomePage(); return; }
   document.getElementById('articlePageContent').innerHTML = `
-    <div class="card-tag ${tagClass[a.cat]}">${a.tag}</div>
+    <div class="card-tag ${tagClass[a.cat]}">${catNames[a.cat]}</div>
     <h1>${a.title}</h1>
     <div class="article-body">${a.body}</div>
     <div class="article-source">A cura di ${a.fonte}<br>Riferimento normativo: ${a.norma}</div>
@@ -622,7 +622,6 @@ function showArticlePage(id){
 }
 
 function showSectionPage(sezione){
-  const catNames = { decreti:'Decreti', ccnl:'CCNL', aiact:'AI Act & Tech', caso:'Il Caso', giurisprudenza:'Giurisprudenza', scadenze:'Scadenze' };
 
   if(sezione === 'esperto'){
     document.getElementById('sectionPageContent').innerHTML = `
@@ -649,7 +648,7 @@ function showSectionPage(sezione){
     `;
     renderUserQuestions();
   } else {
-    const list = ARTICLES.filter(a => a.cat === sezione);
+    const list = ARTICLES.filter(a => a.cat === sezione).sort((a, b) => b.id - a.id);
     document.getElementById('sectionPageContent').innerHTML = `
       <h1 style="font-family:'Fraunces'; font-weight:700; font-size:30px; margin-bottom:8px;">${catNames[sezione] || sezione}</h1>
       <div style="color:#9298a3; font-size:13.5px; margin-bottom:24px;">${list.length} ${list.length===1?'notizia':'notizie'}</div>
@@ -808,6 +807,13 @@ async function initSite(){
 }
 
 initSite();
+
+// Se questa pagina viene aperta da un link di invito/conferma/reset password
+// di Netlify Identity, rimanda automaticamente al pannello /admin, dove
+// lo strumento di login può gestire correttamente il token.
+if (window.location.hash && /invite_token|confirmation_token|recovery_token/.test(window.location.hash)) {
+  window.location.href = 'admin/' + window.location.hash;
+}
 </script>
 <script src="cookie-banner.js"></script>
 </body>
