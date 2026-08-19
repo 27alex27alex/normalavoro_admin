@@ -393,6 +393,24 @@
 </head>
 <body>
 
+<!-- Modulo statico nascosto: necessario perché Netlify riconosca il form
+     "L'esperto risponde" durante il deploy e lo registri per la raccolta
+     reale delle domande (dashboard Netlify + notifica email). Il modulo
+     visibile agli utenti è generato via JavaScript più sotto e invia i
+     dati qui tramite fetch(), stessa tecnica raccomandata da Netlify per
+     i siti che generano l'interfaccia dinamicamente. -->
+<form name="domanda-esperto" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="nome" />
+  <textarea name="domanda"></textarea>
+  <input type="text" name="bot-field" />
+</form>
+
+<form name="iscrizione-newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email" />
+  <input type="text" name="bot-field" />
+</form>
+
+
 <header>
   <div class="header-top">
     <div class="logo"><span class="norma">Norma</span><span class="lavoro">Lavoro</span></div>
@@ -716,6 +734,11 @@ function renderUserQuestions(){
   if(c2) c2.innerHTML = html;
 }
 
+// Codifica i dati in formato compatibile con Netlify Forms
+function encodeFormData(data){
+  return Object.keys(data).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k])).join('&');
+}
+
 function submitQuestion(suffix){
   suffix = suffix || '';
   const qText = document.getElementById('askQuestion' + suffix).value.trim();
@@ -724,13 +747,26 @@ function submitQuestion(suffix){
     showAskFeedback('Scrivi prima la tua domanda nel campo di testo.', true, suffix);
     return;
   }
+
+  // 1) Mostra subito la domanda nella pagina (esperienza immediata per chi scrive)
   const list = loadQuestions();
   list.unshift({ text: qText, name: qName, ts: Date.now() });
   saveQuestions(list);
   renderUserQuestions();
   document.getElementById('askQuestion' + suffix).value = '';
   document.getElementById('askName' + suffix).value = '';
-  showAskFeedback('Domanda inviata. Comparirà qui sopra "in attesa di risposta" — la redazione la risponderà appena possibile.', false, suffix);
+
+  // 2) Invia davvero la domanda a Netlify, così arriva alla redazione
+  //    (dashboard Netlify → Forms, più eventuale notifica email se configurata)
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: encodeFormData({ 'form-name': 'domanda-esperto', nome: qName, domanda: qText, 'bot-field': '' })
+  }).then(() => {
+    showAskFeedback('Domanda inviata. Comparirà qui sopra "in attesa di risposta" — la redazione la risponderà appena possibile.', false, suffix);
+  }).catch(() => {
+    showAskFeedback('Domanda salvata qui sulla pagina, ma non è stato possibile inviarla alla redazione (problema di connessione). Riprova più tardi.', true, suffix);
+  });
 }
 
 function showAskFeedback(msg, isError, suffix){
@@ -762,7 +798,16 @@ function submitNewsletter(){
     localStorage.setItem(SUBS_KEY, JSON.stringify(list));
   } catch(e){}
   input.value = '';
-  showNewsletterFeedback('Iscrizione registrata. Riceverai gli aggiornamenti a questo indirizzo.', false);
+
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: encodeFormData({ 'form-name': 'iscrizione-newsletter', email: email, 'bot-field': '' })
+  }).then(() => {
+    showNewsletterFeedback('Iscrizione registrata. Riceverai gli aggiornamenti a questo indirizzo.', false);
+  }).catch(() => {
+    showNewsletterFeedback('Non è stato possibile completare l\'iscrizione (problema di connessione). Riprova più tardi.', true);
+  });
 }
 
 function showNewsletterFeedback(msg, isError){
