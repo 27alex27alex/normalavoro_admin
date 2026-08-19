@@ -34,18 +34,12 @@ collections:
               - label: "Categoria"
                 name: "cat"
                 widget: "select"
+                hint: "L'etichetta mostrata sul sito (badge colorato e titolo di sezione) viene generata automaticamente in base a questa scelta — non serve inserirla a mano."
                 options:
-                  - { label: "Decreti", value: "decreti" }
+                  - { label: "Normativa (decreti, leggi, regolamenti — inclusi AI Act e temi tech)", value: "normativa" }
                   - { label: "CCNL", value: "ccnl" }
-                  - { label: "AI Act & Tech", value: "aiact" }
                   - { label: "Il Caso", value: "caso" }
                   - { label: "Giurisprudenza", value: "giurisprudenza" }
-                  - { label: "Scadenze", value: "scadenze" }
-
-              - label: "Etichetta mostrata sul badge colorato"
-                name: "tag"
-                widget: "string"
-                hint: "Di solito coincide con il nome della categoria, es. 'CCNL', 'Il Caso', 'Giurisprudenza'."
 
               - label: "Articolo in evidenza (appare in cima alla homepage)"
                 name: "hero"
